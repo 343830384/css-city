@@ -1,0 +1,119 @@
+    /* 窗户0  推拉窗~~~~~~~~~~~~~~~~~~~~~~~~*/
+    .cs_w_0{
+      width:80px;
+      height:80px;
+      background:url(../component/window0/cs_w_0.png);
+      transform-style:preserve-3d;
+      border:1px solid blue;
+   }
+   .cs_w_0 *{
+      position:absolute;
+      transform-style:preserve-3d;
+   }
+   .cs_w_0_0{
+     width:39px;
+     height:50px;
+     background:url(../component/window0/cs_w_0_0.png);
+     transform:translate3d(39px,26px,0px);
+     transition:transform 1s;
+   }
+   .cs_w_0:hover .cs_w_0_0{
+     transform:translate3d(4px,26px,0px);
+   }
+   /* 窗户1  推拉窗~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+   .cs_w_1{
+      width:80px;
+      height:80px;
+      background: url(../component/window0/cs_w_1.png);
+      transform-style:preserve-3d;
+      border:1px solid blue;
+   }
+   .cs_w_1 *{
+      position:absolute;
+      transform-style:preserve-3d;
+   }
+   .cs_w_1_0{
+     width:39px;
+     height:50px;
+     background:url(../component/window0/cs_w_1_0.png);
+     transform:translate3d(39px,26px,0px);
+     transition:transform 1s;
+   }
+   .cs_w_1:hover .cs_w_1_0{
+     transform:translate3d(4px,26px,0px);
+   }
+   /* 窗户2  开合窗~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+   .cs_kw_0{
+       width:100px;
+       height:80px;
+       background: url(../component/window0/cs_kw_0.png);
+       transform-style:preserve-3d;
+       /* transform:rotateX(30deg);  */
+   }
+   .cs_kw_0 *{
+       position:absolute;
+       transform-style:preserve-3d;
+   }
+   .cs_kw_0_0{
+       width:46px;
+       height:72px;
+       left:4px;
+       top:3px;
+       background: url(../component/window0/cs_kw_0_0.png);
+       transform-origin:0% 50%;
+       transform:rotateY(0deg);
+       transition:transform 1s; 
+   }
+   .cs_kw_0_1{
+       width:46px;
+       height:72px;
+       right:4px;
+       top:3px;
+       background: url(../component/window0/cs_kw_0_1.png);
+       transform-origin:100% 50%;
+       transform:rotateY(0deg);
+       transition:transform 1s;  
+   }
+   .cs_kw_0:hover .cs_kw_0_0{
+     transform:rotateY(-130deg);
+   }
+   .cs_kw_0:hover .cs_kw_0_1{
+     transform:rotateY(130deg);
+   }
+   /* 窗户3  开合窗~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+   .cs_kw_1{
+       width:100px;
+       height:80px;
+       background: url(../component/window0/cs_kw_1.png);
+       transform-style:preserve-3d;
+   }
+   .cs_kw_1 *{
+       position:absolute;
+       transform-style:preserve-3d;
+   }
+   .cs_kw_1_0{
+       width:46px;
+       height:72px;
+       left:4px;
+       top:3px;
+       background: url(../component/window0/cs_kw_1_0.png);
+       transform-origin:0% 50%;
+       transform:rotateY(0deg);
+       transition:transform 1s; 
+   }
+   .cs_kw_1_1{
+       width:46px;
+       height:72px;
+       right:4px;
+       top:3px;
+       background: url(../component/window0/cs_kw_1_1.png);
+       transform-origin:100% 50%;
+       transform:rotateY(0deg);
+       transition:transform 1s;  
+   }
+   .cs_kw_1:hover .cs_kw_1_0{
+     transform:rotateY(-130deg);
+   }
+   .cs_kw_1:hover .cs_kw_1_1{
+     transform:rotateY(130deg);
+   }

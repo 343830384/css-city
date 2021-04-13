@@ -1,0 +1,191 @@
+/* 
+  编辑器 
+*/
+*{
+  margin:0 auto;
+  padding:0;
+} 
+/* 整个地形操控 场景区域  包含鼠标控制的地基以及建筑  */
+#cs_land{
+  position: absolute;
+  /* perspective: 500; */
+  /* -webkit-perspective: 500;  */
+  width:800px;
+  height:800px;
+  /* left:50%; */
+  /* top:50%; */
+  /* margin-left:-400px; */
+  /* margin-top:-400px; */
+  /* background:url(../img/5.png); */
+  /* background-size:40px 40px; */
+  transform-style: preserve-3d;
+  transform:translate(300px,200px) rotateX(0deg) rotateY(0deg)  rotateZ(0deg);
+  user-select:none;
+  /* overflow:hidden; */
+  border:1px solid red;
+}
+#cs_land *{
+  transform-style: preserve-3d;
+}
+#cs_land .cs_floor{
+   display:inline-block;
+   width:40px;
+   height:40px;
+   background:url(../img/5.png);
+   background-size:100% 100%;
+   float: left;
+}
+#cs_land .cs_floor:hover{
+    background:rgb(177,138,2);
+}
+#cs_land::before{
+  display:block;
+  position:absolute;
+  content:'x : → ';
+  width:fit-content;
+  height:20px;
+  top:-24px;
+  color:blue;
+}
+#cs_land::after{
+  display:block;
+  position:absolute;
+  content:'y : ↑';
+  width:fit-content;
+  height:20px;
+  bottom:0;
+  right:-38px;
+  color:blue;
+}
+.cs_f_row::after{
+  display:block;
+  content:'';
+  clear: both;
+}
+#cs_land .cc_base{
+   position:absolute;
+   top:0;
+   left:0;
+}
+
+ /* 立方体 和 圆柱体的 地基,默认以物体中心为基础建构  ,z轴位置需要 计算设置 ,置于物体中西那位置 */
+  .cc_base{
+    width:100px;
+    height:100px;
+    transform-origin:50% 50%;
+    transform-style: preserve-3d;
+  }
+  .cc_base *{
+    transform-style: preserve-3d;/* 以3D空间方式呈现 , 默认2d平面(怎么看都是扁的) */
+  }
+  .cc_face{
+    position:absolute;
+    top:0;
+    left:0;
+    background:rgb(110,129,254);
+    background-size:100% 100%;
+    border:1px solid red;
+    /* transform-style: preserve-3d; 以3D空间方式呈现 , 默认2d平面(怎么看都是扁的) */
+  }
+  .cc_base:hover .cc_arrow{
+    display:block;
+  }
+  /* 整个箭头 容器  */
+  .cc_arrow{
+    display:none;
+    position:absolute;
+    width:100%;
+    height:100%;
+  }
+  /* 轴指示箭头 x轴 */
+  .cc_arrow_x{
+    position:absolute;
+    width:140px;
+    height:20px;
+    top:50%;
+    left:50%;
+    margin-top:-10px;
+    background:url(../img/2.png);
+    background-repeat:no-repeat;
+    background-size:60px 20px;
+    background-position:100% 0%;
+    transform:rotate(0deg) rotateX(0deg) rotateY(0deg)  rotateZ(0deg);
+  }
+  .cc_arrow_x *{
+    width:100%;
+    height:100%;
+    background:url(../img/2.png);
+    background-repeat:no-repeat;
+    background-size:60px 20px;
+    background-position:100% 0%;
+    transform:rotateX(90deg) rotateY(0deg)  rotateZ(0deg);
+  }
+  /* 轴指示箭头 y轴 */
+  .cc_arrow_y{
+    position:absolute;
+    width:20px;
+    height:140px;
+    left:50%;
+    top:50%;
+    margin-left:-10px;
+    background:url(../img/3.png);
+    background-repeat:no-repeat;
+    background-size:20px 60px;
+    background-position:0% 100%;
+    transform:rotate(0deg) rotateX(0deg) rotateY(0deg)  rotateZ(0deg);
+  }
+  .cc_arrow_y *{
+    width:100%;
+    height:100%;
+    background:url(../img/3.png);
+    background-repeat:no-repeat;
+    background-size:20px 60px;
+    background-position:0% 100%;
+    transform:rotateX(0deg) rotateY(90deg)  rotateZ(0deg);
+  }
+  .cc_arrow_z{
+      position:absolute;
+      transform-origin:0% 0%;
+      width:20px;
+      height:140px;
+      left:50%;
+      margin-left:-10px;
+      top:50%;
+      /* margin-top:-10px; */
+      background:url(../img/4.png);
+      background-repeat:no-repeat;
+      background-size:20px 60px;
+      background-position:0% 100%;
+      transform:rotate(0deg) rotateX(90deg) rotateY(0deg)  rotateZ(0deg);
+  }
+  .cc_arrow_z *{
+      width:100%;
+      height:100%;
+      background:url(../img/4.png);
+      background-repeat:no-repeat;
+      background-size:20px 60px;
+      background-position:0% 100%;
+      transform:rotateX(0deg) rotateY(90deg)  rotateZ(0deg);
+  }
+/*   .cc_face:hover{
+    background:rgb(250,119,102);
+  } */
+ /*  .cc_child0:hover{
+      background:rgb(243,208,84);
+  }
+  .cc_child1:hover{
+      background:rgb(131,253,39);
+  } */
+  /* 用于方向纠正  拼接实体各个面的角度调整  */
+  .cc_correct{
+    width:100%;
+    height:100%;
+  }
+  .cc_correct *{
+     position:absolute;
+  }
+  /* 组件容器区 */
+  .cc_zj_area{
+    width:100%;
+    height:100%;
+  }

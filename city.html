@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>css_city</title>
+  <link rel="icon" href="data:;base64,="> <!-- 禁止请求 favicon.ico  -->
+  <link rel="stylesheet" href="./css/css_city_editor.css"> <!--  -->
+  <link rel="stylesheet" href="./css/css_city.css">  
+  <link rel="stylesheet" href="./css/css_city_component.css"> <!-- 组件css -->
+</head>
+<body>
+  
+
+ <!--  
+   <div class="list">
+      <div class="title">
+            XXXX
+            <div class="arrow0"></div>
+      </div>
+      <div class="cfg_area">
+
+      </div>
+  </div> 
+-->  
+<!-- 左侧 -->
+<div id='left' class="bar0">
+  <!-- 基本参数 -->
+    <div class="list">
+      <div class="title">
+          基本参数
+          <div class="arrow0"></div>
+      </div>
+      <div class="cfg_area" e-base='basic'>
+            <table  class="table">
+              <tr>
+                  <td style="width:25%;">
+                      地图宽:
+                  </td>
+                  <td style="width:25%;">
+                      <input type="text" style="width:80%;" e-change='mapw' title="最小值=300,最大值=2000">
+                  </td>
+                   <td style="width:25%;">
+                      地图高:
+                    </td>
+                    <td style="width:25%;">
+                      <input type="text" style="width:80%;" e-change='maph'title="最小值=300,最大值=2000">
+                    </td>
+              </tr>
+              <tr>
+                  <td style="width:25%;">
+                      格尺寸:
+                  </td>
+                  <td style="width:25%;">
+                      <input type="text" style="width:80%;" e-change='grid' title="最小值=40,最大值=200">
+                  </td>
+                 
+            </tr>
+           </table>
+      </div>
+  </div>
+  <!-- 基本模型 -->
+   <div class="list" e-base='model'>
+       <div class="title">
+           基本模型
+           <div class="arrow0"></div>
+       </div>
+       <div class="cfg_area">
+          <table  class="table">
+            <tr >
+                <td style="width:50%;">
+                   <button e-attr='title=cube' e-event='onclick:mx_xz' lx='0'>{{cube}}</button>
+                </td>
+                <td style="width:50%;">
+                   <button e-attr='title=cylinder' e-event='onclick:mx_xz' lx='1'>{{cylinder}}</button>
+                </td>
+            </tr>
+            <tr>
+              <td>
+                <button e-attr='title=else' e-event='onclick:mx_xz' lx='2'>{{else}}</button>
+              </td>
+              <td>
+                 <!-- <button>特殊实体</button> -->
+              </td>
+            </tr>
+          </table>
+       </div>
+   </div>
+   <!-- 贴图编辑 -->
+   <div class="list">
+      <div class="title">
+          贴图编辑
+          <div class="arrow0"></div>
+      </div>
+      <div class="cfg_area">
+
+      </div>
+  </div> 
+  <!--动画编辑  -->
+  <div class="list">
+    <div class="title">
+         动画编辑
+        <div class="arrow0"></div>
+    </div>
+    <div class="cfg_area">
+
+    </div>
+  </div> 
+  <!--  -->
+</div><!--左侧 END-->
+
+<!-- 场景 视域 区域 nid 用于标记识别不同的项目,进行初始化 -->
+<div id='cs_land' nid='0'>
+       <!-- 地板层 行 --> 
+       <div e-for='floor_row' class="cs_f_row" cc='row'>
+             <!-- 地板 -->
+             <eng e-for='floor' >
+                <div class="cs_floor" e-attr='style=style' e-event='onclick:floor_click'>
+                        <!-- 用于动态地板的添加 -->
+                </div>
+             </eng>
+       </div>
+</div>
+
+
+
+<!-- 基本模型/部件  添加的编辑区  -->
+<div id='widget'>
+     <!--  模型区 -->
+     <div id='model' e-id='add_m'>
+
+     </div>
+
+     <!-- 组件区 -->
+     <div id='component'>
+            <!-- 推拉窗0 -->
+            <div class="parts" e-event='onclick:bj_xz' t='tlc_0'>
+                <div class="cs_w_0">
+                      <div class="cs_w_0_0"></div>
+                </div>
+            </div>
+            <!-- 推拉窗1 -->
+            <div class="parts" e-event='onclick:bj_xz' t='tlc_1'>
+                <div class="cs_w_1"> 
+                    <div class="cs_w_1_0"></div>
+                </div>
+            </div>
+            <!-- 开合窗0 -->
+            <div class="parts" e-event='onclick:bj_xz' t='khc_0'>
+                <div class="cs_kw_0">
+                      <div class="cs_kw_0_0"></div>
+                      <div class="cs_kw_0_1"></div>
+                </div>
+            </div>
+            <!-- 开合窗1 -->
+            <div class="parts" e-event='onclick:bj_xz' t='khc_1'>
+                <div class="cs_kw_1">
+                      <div class="cs_kw_1_0"></div>
+                      <div class="cs_kw_1_1"></div>
+                </div>
+            </div>
+    </div>
+
+      <!-- 对应参数区域 -->
+     <div id='parameter'>
+            <!-- 模型参数 -->
+            <div style="position:absolute;width:100%;height:100%;display:none;" e-base='mcfg'>
+                    <span>地板格X:</span><input type="text" style="width:30px;" maxlength="3" e-change='x' disabled>
+                    <span>地板格Y:</span><input type="text" style="width:30px;" maxlength="3" e-change='y' disabled>
+                    <span>上下底宽:</span><input type="text" style="width:30px;" maxlength="3" e-change='w'>
+                    <span>上下底高:</span><input type="text" style="width:30px;" maxlength="3" e-change='h'>
+                    <span>边高:</span><input type="text" style="width:30px;" maxlength="3" e-change='sh'>
+                    <span>整体缩放:</span><input type="text" style="width:30px;" e-change='sf' disabled>  
+                    <div style="position:absolute;right:4px;bottom:10px;">
+                          <button e-event='onclick:close'>取消</button><button e-event='onclick:add_mx'>添加</button>
+                    </div>
+            </div>
+            <!-- 组件参数 -->
+            <div style="position:absolute;width:100%;height:100%;display:none;"  e-base='bcfg'>
+                    <span>选中:</span><input type="text" style="width:80px;" maxlength="3" e-change='xz' disabled>
+                    <span>位置X:</span><input type="text" style="width:30px;" maxlength="3" e-change='x'>
+                    <span>位置Y:</span><input type="text" style="width:30px;" maxlength="3" e-change='y'>
+                    <span>整体缩放:</span><input type="text" style="width:30px;" e-change='sf' disabled>
+                    <div style="position:absolute;right:4px;bottom:10px;">
+                           <button  e-event='onclick:close'>取消</button><button e-event='onclick:add_zj'>添加</button>
+                    </div>
+            </div>
+     </div>
+</div>
+
+
+<!-- 右侧  -->
+<div id='right'  class="bar0">
+    <div class="r_area">
+          <div class="r_rq">
+              <div class="r_list" e-for='model'>
+                  <eng e-event='onclick:xz_model'>
+                    <span>id:</span><input type="text" disabled e-change='id' style="width:24px;">
+                    <span>命名:</span><input type="text" e-event='onchange:m_name' e-attr='value=name' style="width:80px;" maxlength="12">
+                  </eng>
+              </div>
+         </div>
+    </div>
+    <!-- <div class="r_area">
+        <div class="r_rq">
+              <div class="r_list" e-for='child'>
+                  <eng e-event='onclick:xz_child'>
+                    <span>id:</span><input type="text" disabled e-change='id' style="width:24px;">
+                    <span>命名:</span><input type="text" e-event='onchange:c_name' e-attr='value=name'  style="width:80px;" maxlength="12">
+                  </eng>
+              </div>
+        </div>
+    </div> -->
+    <!-- 
+    <div class="r_area">
+        <div class="r_rq">
+              <div class="r_list" e-for='child1'>
+                  <eng e-event='onclick:xz_child1'>
+                    <span>id:</span><input type="text" disabled e-change='id' style="width:24px;">
+                    <span>命名:</span><input type="text" e-change='name' style="width:80px;">
+                  </eng>
+            </div>
+        </div>
+    </div> 
+    -->
+</div>
+<div style="position:absolute;width:254px;height:100px;left:202px;bottom:162px;border:1px solid black; font-size:12px;">
+鼠标右键- 调整场景倾斜角度 <br>
+鼠标左键- 旋转场景<br>
+鼠标中键- 移动场景<br>
+鼠标滚轮- 缩放场景<br>
+选中地板网格- 点击左侧基本模型,弹出模型面板<br>
+模型面双击- 弹出组件面板<br>
+</div>
+<!-- 底部 -->
+<div id='bottom'  class="bar1">
+     <div class="b_area">
+       <!-- <div class="b_c_rq"></div> -->
+              <!-- 矩形体 和 其组件 参数区  -->
+             <div class="b_cfg" style="display:none;" e-base='cuboid'>
+                     
+                     <!-- 矩形体参数 -->
+                     <div class="b_c_rq" e-base='mx'>
+                          <span style="font-weight:bolder;color:blue;">模型参数;</span><button title="双击删除" e-event='ondblclick:del_mx'>删</button>
+                          <div style="clear: both;"></div>
+                          <span style="margin-left:0;">X:</span><input type="text" style="width:30px;" maxlength="4" e-change='0'>
+                          <span>Y:</span><input type="text" style="width:30px;" maxlength="4" e-change='1'>
+                          <span>Z:</span><input type="text" style="width:30px;" maxlength="4" e-change='2'>
+                          <span>底宽:</span><input type="text" style="width:30px;" maxlength="3" e-change='3'>
+                          <span>底长:</span><input type="text" style="width:30px;" maxlength="3" e-change='4'>
+                          <span>边高:</span><input type="text" style="width:36px;" maxlength="4" e-change='5'>
+                          <div style="clear: both;"></div>
+                          <span style="margin-left:0;">角度X:</span><input type="text" style="width:30px;" maxlength="5" e-change='6'>
+                          <span>角度Y:</span><input type="text" style="width:30px;" maxlength="5" e-change='7'>
+                          <span>角度Z:</span><input type="text" style="width:30px;" maxlength="5" e-change='8'>
+                          <span>缩放X:</span><input type="text" style="width:30px;" maxlength="5" e-change='9'>
+                          <span>缩放Y:</span><input type="text" style="width:30px;" maxlength="5" e-change='10'>
+                          <span>缩放Z:</span><input type="text" style="width:30px;" maxlength="5" e-change='11'>
+                    </div>
+                    <div style="clear:both;" e-base='side'></div>
+                     <!-- 面参数 -->
+                     <div class="b_c_rq" e-base='side'>
+                          <span style="font-weight:bolder;color:blue;margin-left:0px;">面参数;</span>
+                          <div style="clear:both;"></div>
+                          <span style="margin-left:-12px;">角度X:</span><input type="text" style="width:30px;" maxlength="5" e-change='0'>
+                          <span>角度Y:</span><input type="text" style="width:30px;" maxlength="5" e-change='1'>
+                          <span>角度Z:</span><input type="text" style="width:30px;" maxlength="5" e-change='2'>
+                          <span>背景图:</span><input type="text" style="width:120px;" title="合法css color值 或背景图 url(.png)  临时方案,后期允许目录添加" e-change='3'>
+                          <span>适应:</span><input type="checkbox" e-id='d_sy0' e-event='onclick:bg_fun0' t='0'>
+                          <span>平铺:</span><input type="checkbox" checked e-id='d_pp0' e-event='onclick:bg_fun0' t='1'>
+                     </div>
+                     <div style="clear:both;"></div>
+                     <!-- 组件参数 -->
+                     <div class="b_c_rq" e-base='zj'>
+                     <span style="font-weight:bolder;color:blue;margin-left:0px;">选中组件参数;</span><button title="双击删除" e-event='ondblclick:del_zj'>删</button>
+                          <div style="clear:both;"></div>
+                          <span style="margin-left:-12px;">X:</span><input type="text" style="width:30px;" maxlength="4" e-change='0'>
+                          <span>Y:</span><input type="text" style="width:30px;" maxlength="4" e-change='1'>
+                          <span>Z:</span><input type="text" style="width:30px;" maxlength="4" e-change='2'>
+                          <span>角度X:</span><input type="text" style="width:30px;" maxlength="5" e-change='3'>
+                          <span>角度Y:</span><input type="text" style="width:30px;" maxlength="5" e-change='4'>
+                          <span>角度Z:</span><input type="text" style="width:30px;" maxlength="5" e-change='5'>
+                          <span>缩放X:</span><input type="text" style="width:30px;" maxlength="5" e-change='6'>
+                          <span>缩放Y:</span><input type="text" style="width:30px;" maxlength="5" e-change='7'>
+                          <span>缩放Z:</span><input type="text" style="width:30px;" maxlength="5" e-change='8'>
+                    </div>
+             </div>
+     </div>
+</div>
+
+
+<!-- 提示区 -->
+<textarea id="tip" readonly>
+</textarea>
+</body>
+</html>
+<script>
+var say=console.log;
+var reNew=function(obj){
+      return JSON.parse(JSON.stringify(obj));
+};
+
+//注册的公共方法
+var pubFun={
+       //当前选中的 模型dom, 面dom, 组件dom
+        select:[],// 0:mxDom,1:面dom ,2:zjDOm
+        cache:{//储存全部  的 [mxApp 和 mxDom] 数据 ,以mxId为索引
+           //id:[app,appDom] 
+        },
+        //view:
+        //tool:   (tip,)
+        //widget:
+        //left
+        //right
+        //bottom
+};
+//项目初始化用 
+setTimeout(function(){
+  say(123)
+    pubFun.left.init(pjCfg);
+},50);
+</script>
+<script src="./js/eng_1.2.2_min.js"></script>
+<script src="./js/tool.js"></script>
+<script src="./js/project_cfg.js"></script>
+<script src="./js/css_city_entity.js"></script>
+<script src="./js/view.js"></script>
+<script src="./js/sidebar_left.js"></script>
+<script src="./js/sidebar_right.js"></script>
+<script src="./js/sidebar_bottom.js"></script>
+<script src="./js/widget.js"></script>
+<script>
+
+say(456)
+
+</script>
